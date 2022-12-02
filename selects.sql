@@ -23,7 +23,7 @@ FROM
 	produtos_pedidos pp
 WHERE
 	produto_id = (
-		SELECT id FROM produtos WHERE nome = 'Fritas'
+	SELECT id FROM produtos WHERE nome = 'Fritas'
 	);
 
 -- 3)
