@@ -23,7 +23,7 @@ FROM
 	produtos_pedidos pp
 WHERE
 	produto_id = (
-	SELECT id FROM produtos WHERE nome = 'Fritas'
+		SELECT id FROM produtos WHERE nome = 'Fritas'
 	);
 
 -- 3)
@@ -31,10 +31,7 @@ SELECT
 	c.nome AS gostam_de_fritas
 FROM
 	clientes c 
-JOIN 
-	produtos_pedidos pp 
-ON 
-	c.id = pp.pedido_id
+JOIN produtos_pedidos pp ON c.id = pp.pedido_id
 WHERE 
 	pp.produto_id = 6;
 
@@ -55,11 +52,6 @@ SELECT
 	COUNT(*)
 FROM
 	produtos pr
-JOIN
-	produtos_pedidos pp 
-ON
-	pr.id = pp.produto_id
-GROUP BY
-	pr.id
-ORDER BY
-	pr.nome;
+JOIN produtos_pedidos pp ON	pr.id = pp.produto_id
+GROUP BY pr.id
+ORDER BY pr.nome;

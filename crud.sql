@@ -42,18 +42,9 @@ SELECT
  	pr.pts_de_lealdade
 FROM 
 	clientes c 
-JOIN
-	pedidos pe 
-ON
-	c.id = pe.cliente_id
-JOIN 
-	produtos_pedidos pp 
-ON
-	pp.pedido_id = 6
-JOIN
-	produtos pr
-ON
-	pr.id = pp.produto_id 
+JOIN pedidos pe ON c.id = pe.cliente_id
+JOIN produtos_pedidos pp ON	pp.pedido_id = 6
+JOIN produtos pr ON pr.id = pp.produto_id 
 WHERE
 	c.id = pp.pedido_id;
 
@@ -64,24 +55,17 @@ UPDATE
 	clientes 
 SET
 	lealdade = (
-	SELECT
-		SUM(pr.pts_de_lealdade) 
-	FROM
-		produtos pr
-	JOIN
-		produtos_pedidos pp 
-	ON
-		pr.id = pp.produto_id 
-	WHERE
-		pp.pedido_id = 6)
+        SELECT
+            SUM(pr.pts_de_lealdade) 
+        FROM
+            produtos pr
+        JOIN produtos_pedidos pp ON	pr.id = pp.produto_id 
+        WHERE
+            pp.pedido_id = 6)
 WHERE
 	id = (
-	SELECT
-		id
-	FROM
-		clientes
-	WHERE
-		nome = 'Georgia');
+	    SELECT id FROM clientes WHERE nome = 'Georgia'
+    );
 
 -- Deleção
 
@@ -90,9 +74,5 @@ DELETE FROM
 	clientes
 WHERE
 	id = ( 
-	SELECT
-		id
-	FROM
-		clientes
-	WHERE
-		nome = 'Marcelo');
+	    SELECT id FROM clientes	WHERE nome = 'Marcelo'
+    );
