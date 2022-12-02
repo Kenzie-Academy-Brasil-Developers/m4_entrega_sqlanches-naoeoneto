@@ -96,4 +96,3 @@ WHERE
 		clientes
 	WHERE
 		nome = 'Marcelo');
-
